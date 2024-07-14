@@ -1,0 +1,42 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/dotnet
+{
+	"name": "GitHub Copilot Hackathon",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/dotnet:8.0",
+	"features": {
+		"ghcr.io/devcontainers/features/docker-in-docker:2.11.0": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/azure-cli:1": {},
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {},
+		"ghcr.io/devcontainers-contrib/features/terraform-asdf:2": {}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"GitHub.copilot",
+				"GitHub.copilot-chat",
+				"redhat.vscode-yaml",
+				"GitHub.vscode-github-actions",
+				"ms-azuretools.vscode-docker",
+				"ms-dotnettools.csdevkit",
+				"ritwickdey.LiveServer",
+				"samplavigne.p5-vscode",
+				"rangav.vscode-thunder-client"
+			]
+		}
+	},
+	"postCreateCommand": "cd ./p5; npm install; npm install p5; cd ..; dotnet restore ./rent-car/rent-car.sln",
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [5156, 8080,  8081, 8082],
+	"portsAttributes": {
+		"5156": {
+			"protocol": "https"
+		}
+	}
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"	
+}
