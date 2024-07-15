@@ -19,24 +19,24 @@ public static class Program
     {
         string CsvPath = "./employees.csv";
 
-        // TODO : Implémenter une fonction pour calculer une factorielle
+        // Implémenter une fonction pour calculer une factorielle
         int n = 5;
         int factorial = CalculateFactorial(n);
         Console.WriteLine($"Factorielle de {n} est {factorial}");
 
-        // TODO: Lire les employés depuis le fichier CSV et les stocker dans une liste
+        // Lire les employés depuis le fichier CSV et les stocker dans une liste
         List<Employee> employees = ReadEmployeesFromCsv(CsvPath);
 
-        // TODO: Afficher les employés et vérifier si les emails sont valides
+        // Afficher les employés et vérifier si les emails sont valides
         DisplayEmployeesAndValidateEmails(employees);
 
-        // TODO: Trier les employés par date d'entrée dans l'entreprise
+        // Trier les employés par date d'entrée dans l'entreprise
         SortEmployeesByDate(employees);
 
-        // TODO: Afficher les employés triés par date d'entrée
+        // Afficher les employés triés par date d'entrée
         DisplaySortedEmployees(employees);
 
-        // TODO: Convertir le temps de travail hebdomadaire au format classique et afficher
+        // Convertir le temps de travail hebdomadaire au format classique et afficher
         ConvertAndDisplayTimeFormat(employees);
     }
 
@@ -56,7 +56,7 @@ public static class Program
 
         string[] lines = File.ReadAllLines(csvPath);
 
-        // Skip the header line
+        // Saute la ligne d'entête
         for (int i = 1; i < lines.Length; i++)
         {
             string line = lines[i];
