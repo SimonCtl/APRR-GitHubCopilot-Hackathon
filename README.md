@@ -1,6 +1,7 @@
 # FormationCopilot - Aventurier du code 🌟🌟
 
-Dans ce parcours, vous allez faire vos premiers pas avec GitHub Copilot et progresser jusqu’à devenir un véritable champion du code. Que vous soyez un débutant complet ou que vous ayez déjà quelques notions, cette formation est conçue pour vous guider vers les sommets.
+Dans ce parcours, vous allez faire vos premiers pas avec GitHub Copilot et progresser jusqu’à devenir un véritable champion du code.  
+Que vous soyez un débutant complet ou que vous ayez déjà quelques notions, cette formation est conçue pour vous guider vers les sommets.
 
 Le plus important dans cette journée est de profiter du temps alloué pour tester plein de scénarios !
 
@@ -13,7 +14,8 @@ Le plus important dans cette journée est de profiter du temps alloué pour test
 - Visual Studio Code/Visual Studio
 
 ## Recommandation
-L'environnement est déjà configuré pour fonctionner avec les Codespaces Github, vous pouvez trouver les fichiers de configuration dans le dossier .devcontainer.Pour commencer à programmer, il suffit de créer un nouvel espace de code et vous êtes prêt à partir, vous n'avez pas besoin d'installer quoi que ce soit.
+L'environnement est déjà configuré pour fonctionner avec les Codespaces Github, vous pouvez trouver les fichiers de configuration dans le dossier .devcontainer.  
+Pour commencer à programmer, il suffit de créer un nouvel espace de code et vous êtes prêt à partir, vous n'avez pas besoin d'installer quoi que ce soit.
 
 ## Reminder
 Vous avez un cheatsheet disponible [GHCP cheatsheet](docs/GHCPcheatsheet.md)

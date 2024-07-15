@@ -9,7 +9,8 @@ GitHub Copilot permet d'utiliser [Mermaid] (https://mermaid.js.org/) pour publie
 
 Dans cet exercice le but est d'utiliser GitHub Copilot pour générer :
 - Un diagramme de classe
-- Un ERD (Entity Relation Diagram) à partir des fichiers SQL
+- Un ERD (Entity Relation Diagram) à partir des fichiers SQL  
+  - Vous devez générer le fichier SQL à partir des entités. 
 
 <details>
 <summary>Exemple d'utilisation possible</summary>
