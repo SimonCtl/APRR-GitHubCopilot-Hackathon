@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.IO;
 using Microsoft.VisualBasic.FileIO;
 using System.Text.RegularExpressions;
+
 public static class Program
 {
-
     public class Employee
     {
-        // TODO : Ajoutez les propriétés nécessaires pour représenter un employé ( Nom, Prenom, Email, DateEntreeEntreprise, TempsTravailHebdomadaire )
+        public string? Nom { get; set; }
+        public string? Prenom { get; set; }
+        public string? Email { get; set; }
+        public DateTime DateEntreeEntreprise { get; set; }
+        public double TempsTravailHebdomadaire { get; set; }
     }
 
     public static void Main()
@@ -16,48 +20,127 @@ public static class Program
         string CsvPath = "./employees.csv";
 
         // TODO : Implémenter une fonction pour calculer une factorielle
+        int n = 5;
+        int factorial = CalculateFactorial(n);
+        Console.WriteLine($"Factorielle de {n} est {factorial}");
 
         // TODO: Lire les employés depuis le fichier CSV et les stocker dans une liste
+        List<Employee> employees = ReadEmployeesFromCsv(CsvPath);
 
         // TODO: Afficher les employés et vérifier si les emails sont valides
+        DisplayEmployeesAndValidateEmails(employees);
 
         // TODO: Trier les employés par date d'entrée dans l'entreprise
+        SortEmployeesByDate(employees);
 
         // TODO: Afficher les employés triés par date d'entrée
+        DisplaySortedEmployees(employees);
 
         // TODO: Convertir le temps de travail hebdomadaire au format classique et afficher
-
+        ConvertAndDisplayTimeFormat(employees);
     }
 
     // Fonction pour calculer une factorielle
+    private static int CalculateFactorial(int n)
+    {
+        if (n == 0)
+            return 1;
+        else
+            return n * CalculateFactorial(n - 1);
+    }
 
     // Fonction pour lire les employés depuis un fichier CSV
     private static List<Employee> ReadEmployeesFromCsv(string csvPath)
     {
-        // TODO: Implémentez cette méthode pour lire les données d'employés depuis un fichier CSV et les retourner sous forme de liste d'objets Employee
-        return new List<Employee>();
+        List<Employee> employees = new List<Employee>();
+
+        string[] lines = File.ReadAllLines(csvPath);
+
+        // Skip the header line
+        for (int i = 1; i < lines.Length; i++)
+        {
+            string line = lines[i];
+            string[] fields = line.Split(',');
+
+            Employee employee = new Employee
+            {
+                Nom = fields[0],
+                Prenom = fields[1],
+                Email = fields[2],
+                DateEntreeEntreprise = DateTime.Parse(fields[3]),
+                TempsTravailHebdomadaire = double.Parse(fields[4])
+            };
+
+            employees.Add(employee);
+        }
+
+        return employees;
     }
 
     // Fonction pour trier les employés par date d'entrée dans l'entreprise
     private static void SortEmployeesByDate(List<Employee> employees)
     {
-        // TODO: Implémentez cette méthode pour trier la liste des employés par leur date d'entrée dans l'entreprise
+        employees.Sort((x, y) => x.DateEntreeEntreprise.CompareTo(y.DateEntreeEntreprise));
     }
 
     // Fonction pour convertir le temps de travail hebdomadaire au format classique (hh:mm)
     private static string ConvertToClassicFormat(double tempsTravailHebdomadaire)
     {
-        // TODO: Implémentez cette méthode pour convertir un double représentant le temps de travail hebdomadaire en une chaîne de caractères au format hh:mm
-        return "";
+        TimeSpan timeSpan = TimeSpan.FromHours(tempsTravailHebdomadaire);
+        return timeSpan.ToString(@"hh\:mm");
     }
 
     // Fonction pour valider une adresse email en utilisant une expression régulière
     public static bool IsValidEmail(string email)
     {
-        // TODO: Implémentez cette méthode pour valider une adresse email en utilisant une expression régulière et retourner vrai ou faux
-        return false;
+        string pattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
+        return Regex.IsMatch(email, pattern);
     }
 
-    
+    // Fonction pour afficher les employés et vérifier si les emails sont valides
+    private static void DisplayEmployeesAndValidateEmails(List<Employee> employees)
+    {
+        foreach (Employee employee in employees)
+        {
+            Console.WriteLine($"Nom: {employee.Nom}");
+            Console.WriteLine($"Prénom: {employee.Prenom}");
+            Console.WriteLine($"Email: {employee.Email}");
+            Console.WriteLine($"Date d'entrée dans l'entreprise: {employee.DateEntreeEntreprise}");
+            Console.WriteLine($"Temps de travail hebdomadaire: {employee.TempsTravailHebdomadaire}");
 
+            bool isValidEmail = IsValidEmail(employee.Email);
+            Console.WriteLine($"Email valide: {isValidEmail}");
+
+            Console.WriteLine();
+        }
+    }
+
+    // Fonction pour afficher les employés triés par date d'entrée
+    private static void DisplaySortedEmployees(List<Employee> employees)
+    {
+        Console.WriteLine("Employés triés par date d'entrée dans l'entreprise:");
+        foreach (Employee employee in employees)
+        {
+            Console.WriteLine($"Nom: {employee.Nom}");
+            Console.WriteLine($"Prénom: {employee.Prenom}");
+            Console.WriteLine($"Email: {employee.Email}");
+            Console.WriteLine($"Date d'entrée dans l'entreprise: {employee.DateEntreeEntreprise}");
+            Console.WriteLine($"Temps de travail hebdomadaire: {employee.TempsTravailHebdomadaire}");
+            Console.WriteLine();
+        }
+    }
+
+    // Fonction pour convertir le temps de travail hebdomadaire au format classique et afficher
+    private static void ConvertAndDisplayTimeFormat(List<Employee> employees)
+    {
+        Console.WriteLine("Temps de travail hebdomadaire au format classique (hh:mm):");
+        foreach (Employee employee in employees)
+        {
+            string classicFormat = ConvertToClassicFormat(employee.TempsTravailHebdomadaire);
+            Console.WriteLine($"Nom: {employee.Nom}");
+            Console.WriteLine($"Prénom: {employee.Prenom}");
+            Console.WriteLine($"Temps de travail hebdomadaire (format classique): {classicFormat}");
+            Console.WriteLine();
+        }
+    }
 }
